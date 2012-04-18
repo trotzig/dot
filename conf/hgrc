@@ -1,0 +1,9 @@
+[ui]
+username = Shane da Silva <shane.m.dasilva@gmail.com>
+style = compact
+
+[extensions]
+color =
+
+[diff]
+git = true
