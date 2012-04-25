@@ -49,6 +49,12 @@ allows you to tweak your configuration on a per-shell basis.
 Look at the `plugins` directory for examples of how this organizational system
 works in practice.
 
+Lastly, there is the `install` directory. This directory contains all scripts
+that are run when `install.sh` is run. They are intended to be used to set up
+symlinks or perform any other one-time actions in order to set up the
+configuration. Each of these scripts should be idempotent, so that running
+`install.sh` multiple times isn't dangerous in any way.
+
 ## Etymology
 'Dot' comes from the fact that it ultimately manages 'dot' files, and is a
 tribute to [Dot Matrix][DotMatrix] of [ReBoot][ReBoot] fame.
