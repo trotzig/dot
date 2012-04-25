@@ -1,12 +1,5 @@
 # Defines environment variables and other settings that are used everywhere
 
-# Use applications from local user bin if one exists
-export PATH=$HOME/bin:$PATH
-
-export PAGER=less
-export EDITOR=vim
-export VISUAL=$EDITOR
-
 # Make working with colour escape codes easier
 init_colours () {
   local prefix=''

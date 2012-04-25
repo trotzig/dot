@@ -1,3 +1,6 @@
+# Use `less` as the default viewer for multi-page output
+export PAGER=less
+
 # Output ANSI control/colour sequences
 export LESS="--RAW-CONTROL-CHARS"
 
