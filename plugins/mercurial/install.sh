@@ -1,3 +1,3 @@
 install () {
-  install_symlink "$HOME/.hgrc" "$DOTDIR/conf/hgrc"
+  install_symlink "$HOME/.hgrc" "$DOTPLUGIN/hgrc"
 }

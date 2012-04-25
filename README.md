@@ -46,14 +46,14 @@ Next, any file with the shell-specific extension of the current shell (e.g.
 `.bash` or `.zsh`) is loaded to run commands specific to that shell. This
 allows you to tweak your configuration on a per-shell basis.
 
+In each plugin, there may also be an installation script `install.sh`, and
+other configuration files related to the plugin. For example, a plugin
+directory for git would likely have `gitconfig` and `gitignore` files, along
+with an `install.sh` script which symlinks these files to the user's home
+directory.
+
 Look at the `plugins` directory for examples of how this organizational system
 works in practice.
-
-Lastly, there is the `install` directory. This directory contains all scripts
-that are run when `install.sh` is run. They are intended to be used to set up
-symlinks or perform any other one-time actions in order to set up the
-configuration. Each of these scripts should be idempotent, so that running
-`install.sh` multiple times isn't dangerous in any way.
 
 ## Etymology
 'Dot' comes from the fact that it ultimately manages 'dot' files, and is a

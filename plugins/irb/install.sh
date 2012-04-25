@@ -1,3 +1,3 @@
 install () {
-  install_symlink "$HOME/.irbrc" "$DOTDIR/conf/irbrc"
+  install_symlink "$HOME/.irbrc" "$DOTPLUGIN/irbrc"
 }

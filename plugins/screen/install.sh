@@ -1,3 +1,3 @@
 install () {
-  install_symlink "$HOME/.screenrc" "$DOTDIR/conf/screenrc"
+  install_symlink "$HOME/.screenrc" "$DOTPLUGIN/screenrc"
 }

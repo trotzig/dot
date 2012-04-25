@@ -9,6 +9,6 @@ install () {
   # (so that we can also make local customizations)
   cat > "$target_file" <<EOF
 \set DOTDIR '$DOTDIR'
-\i $DOTDIR/conf/psqlrc
+\i $DOTPLUGIN/psqlrc
 EOF
 }

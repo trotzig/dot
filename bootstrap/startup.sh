@@ -14,7 +14,7 @@ bootstrap () {
   local shell=`current_shell`
 
   # For each plugin
-  for dir in `find $DOTDIR/plugins -type d -mindepth 1 -maxdepth 1`; do
+  for DOTPLUGIN in `find $DOTDIR/plugins -type d -mindepth 1 -maxdepth 1`; do
     # Source files from environment and library files
     for type in `echo "lib env" | words`; do
 
@@ -25,8 +25,8 @@ bootstrap () {
 
       # Source the generic .sh files first, then the shell-specific ones
       for ext in `echo $exts | words`; do
-        if [ -s "$dir/$type.$ext" ]; then
-          source "$dir/$type.$ext"
+        if [ -s "$DOTPLUGIN/$type.$ext" ]; then
+          source "$DOTPLUGIN/$type.$ext"
         fi
       done
     done

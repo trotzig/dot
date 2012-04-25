@@ -1,3 +1,3 @@
 install () {
-  install_symlink "$HOME/.ackrc" "$DOTDIR/conf/ackrc"
+  install_symlink "$HOME/.ackrc" "$DOTPLUGIN/ackrc"
 }
