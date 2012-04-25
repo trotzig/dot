@@ -4,7 +4,7 @@ export PAGER=less
 # Output ANSI control/colour sequences
 export LESS="--RAW-CONTROL-CHARS"
 
-export LESSHISTFILE="$DOTDIR/log/less-history"
+export LESSHISTFILE="$DOTLOGDIR/less-history"
 
 # `man` page colours
 export LESS_TERMCAP_mb=$'\E[05;31m' # begin blinking

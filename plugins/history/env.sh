@@ -1,4 +1,4 @@
-export HISTFILE="$DOTDIR/log/history"
+export HISTFILE="$DOTLOGDIR/shell-history"
 
 # Number of lines kept in history
 export HISTSIZE=10000

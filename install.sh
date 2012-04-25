@@ -11,6 +11,7 @@ set -e
 export DOTDIR="$( cd "$( dirname "$0" )" && pwd )"
 
 source "$DOTDIR/bootstrap/lib.sh"
+source "$DOTDIR/bootstrap/env.sh"
 
 backup () {
   local file=$1

@@ -1,5 +1,8 @@
 # Defines environment variables and other settings that are used everywhere
 
+# Directory that any log files should be stored in
+export DOTLOGDIR="$DOTDIR/log"
+
 # Prefer applications from home bin if one exists
 export PATH="$HOME/bin:$PATH"
 
