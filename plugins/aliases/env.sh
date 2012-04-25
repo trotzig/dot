@@ -1,7 +1,10 @@
+# Prevent alias errors when we run the "reload" alias
+unalias -a
+
 # Editing shortcuts
-alias reload='. ~/.profile; echo .profile reloaded'
-alias aliases="$EDITOR $DOTDIR/conf/aliases; reload"
-alias sshconfig="$EDITOR ~/.ssh/config"
+alias reload="source $DOTDIR/bootstrap.sh; echo Reloaded shell"
+alias aliases="\$EDITOR $DOTDIR/conf/aliases; reload"
+alias sshconfig="\$EDITOR ~/.ssh/config"
 
 # Common shortcuts
 alias ls="ls --color=auto -h"

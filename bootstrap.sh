@@ -10,20 +10,24 @@ bootstrap () {
   source "$DOTDIR/shell/lib.sh"
   source "$DOTDIR/shell/env.sh"
 
-  # Source files from environment and library directories
-  for dir in `echo "lib env" | words`; do
-    local exts=sh
-    local shell=`current_shell`
+  local exts=sh
+  local shell=`current_shell`
 
-    if [ "$shell" != sh ]; then
-      # Include custom shell extension in list of files to source
-      exts="$exts $shell"
-    fi
+  # For each plugin
+  for dir in `find $DOTDIR/plugins -type d -mindepth 1 -maxdepth 1`; do
+    # Source files from environment and library files
+    for type in `echo "lib env" | words`; do
 
-    # Source the generic .sh files first, then the shell-specific ones
-    for ext in `echo $exts | words`; do
-      for file in `find $DOTDIR/$dir -maxdepth 1 -name "*.$ext"`; do
-        source $file
+      if [ "$shell" != sh ]; then
+        # Include custom shell extension in list of files to source
+        exts="$exts $shell"
+      fi
+
+      # Source the generic .sh files first, then the shell-specific ones
+      for ext in `echo $exts | words`; do
+        if [ -s "$dir/$type.$ext" ]; then
+          source "$dir/$type.$ext"
+        fi
       done
     done
   done

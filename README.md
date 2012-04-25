@@ -12,7 +12,7 @@ It was motivated by three goals:
 
 While it currently only supports `bash` and `zsh`, in theory there's nothing
 preventing it from supporting `csh` or others---there's just little
-motivation to do so as they are far less common.
+motivation to do so as they are far less common/used.
 
 ## Installation
 Clone the repository:
@@ -25,6 +25,29 @@ Run the install script:
     ./install.sh
 
 You're all set. Don't worry, Dot will backup any dot files it replaces.
+
+## Organization
+Dot allows you to organize configuration settings into logical groups. The
+`plugins` directory contains a folder for each one of these groups (e.g. an
+`ssh` folder for SSH-related settings, or a `git` folder for git-related
+settings).
+
+Each of these folders can contains files of the form
+`{env,lib}.{sh,bash,zsh}`. `lib` files are loaded first, and should contain
+the definitions of functions that are used for the given plugin. `env` files
+are loaded next, and make any other environment-related changes to the current
+shell (e.g. exporting variables).
+
+For any file that is loaded from a plugin, the `.sh` extension is loaded
+first. `.sh` files are intended to represent code that runs regardless of
+which shell you are using (e.g. it should contain shell-agnostic code).
+
+Next, any file with the shell-specific extension of the current shell (e.g.
+`.bash` or `.zsh`) is loaded to run commands specific to that shell. This
+allows you to tweak your configuration on a per-shell basis.
+
+Look at the `plugins` directory for examples of how this organizational system
+works in practice.
 
 ## Etymology
 'Dot' comes from the fact that it ultimately manages 'dot' files, and is a
