@@ -1,3 +1,2 @@
---pager=less -R
+--pager=$PAGER
 --sort-files
---colour
