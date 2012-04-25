@@ -1,5 +1,8 @@
 # Defines environment variables and other settings that are used everywhere
 
+# Prefer applications from home bin if one exists
+export PATH="$HOME/bin:$PATH"
+
 # Make working with colour escape codes easier
 init_colours () {
   local prefix=''

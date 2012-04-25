@@ -7,8 +7,8 @@
 
 bootstrap () {
   # Load library of helper functions and initialize global environment
-  source "$DOTDIR/shell/lib.sh"
-  source "$DOTDIR/shell/env.sh"
+  source "$DOTDIR/bootstrap/lib.sh"
+  source "$DOTDIR/bootstrap/env.sh"
 
   local exts=sh
   local shell=`current_shell`

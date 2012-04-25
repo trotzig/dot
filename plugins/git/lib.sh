@@ -29,12 +29,8 @@ git_tree_status() {
   fi
   if $(echo "$index" | grep '^A ' &> /dev/null); then
     statusline="$added$statusline"
-  elif $(echo "$index" | grep '^M ' &> /dev/null); then
-    statusline="$added$statusline"
   fi
-  if $(echo "$index" | grep '^ M ' &> /dev/null); then
-    statusline="$modified$statusline"
-  elif $(echo "$index" | grep '^AM ' &> /dev/null); then
+  if $(echo "$index" | grep '^.\{0,1\}M ' &> /dev/null); then
     statusline="$modified$statusline"
   elif $(echo "$index" | grep '^ T ' &> /dev/null); then
     statusline="$modified$statusline"
@@ -42,9 +38,7 @@ git_tree_status() {
   if $(echo "$index" | grep '^R ' &> /dev/null); then
     statusline="$renamed$statusline"
   fi
-  if $(echo "$index" | grep '^ D ' &> /dev/null); then
-    statusline="$deleted$statusline"
-  elif $(echo "$index" | grep '^AD ' &> /dev/null); then
+  if $(echo "$index" | grep '^.\{0,1\}D ' &> /dev/null); then
     statusline="$deleted$statusline"
   fi
   if $(echo "$index" | grep '^UU ' &> /dev/null); then

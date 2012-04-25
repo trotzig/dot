@@ -39,7 +39,7 @@ for file in `echo ".bash_profile .zshrc" | words`; do
 
   cat > "$tmp_file" <<EOF
 export DOTDIR="$DOTDIR"
-source "\$DOTDIR/bootstrap.sh"
+source "\$DOTDIR/bootstrap/startup.sh"
 EOF
 
   # Backup any previously existing file (unless it's from another installation)
