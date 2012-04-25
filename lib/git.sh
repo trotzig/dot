@@ -3,21 +3,24 @@ active_git_branch () {
   echo "${ref#refs/heads/}"
 }
 
+git_branch_ahead () {
+  local branch=`active_git_branch`
+  `git log origin/$branch..HEAD 2> /dev/null | grep '^commit' &> /dev/null` \
+    && echo '➨'
+}
+
 git_tree_status() {
   local index="$(git status --porcelain 2>/dev/null)"
 
   local reset='\033[0m'
-  local yellow='\033[00;38;5;136m'
-  local orange='\033[00;38;5;166m'
-  local green='\033[00;38;5;64m'
   local red='\033[00;31m'
   local bright_red='\033[01;31m'
 
   local untracked=''
-  local modified=${yellow}±${reset}
-  local added=${green}✚${reset}
+  local modified=${FG[136]}±${reset}
+  local added=${FG[64]}✚${reset}
   local deleted=${red}✗${reset}
-  local renamed=${orange}®${reset}
+  local renamed=${FG[166]}®${reset}
   local unmerged=${bright_red}⊁${reset}
 
   local statusline=''

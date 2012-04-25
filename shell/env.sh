@@ -9,6 +9,30 @@ export VISUAL=$EDITOR
 
 # Make working with colour escape codes easier
 init_colours () {
+  local prefix=''
+  local suffix=''
+  local shell=`current_shell`
+
+  # Stops bash/zsh from counting escape sequences as characters.
+  # This prevents the PS1 prompt from counting
+  case "$shell" in
+    bash)
+      prefix='\['
+      suffix='\]'
+      ;;
+    zsh)
+      prefix='%{'
+      suffix='%}'
+  esac
+
+  # Escape sequence for prompts
+  PRESET="$prefix[00m$suffix"
+  PBOLD="$prefix[01m$suffix"
+  PITALIC="$prefix[03m$suffix"
+  PUNDERLINE="$prefix[04m$suffix"
+  PBLINK="$prefix[05m$suffix"
+  PREVERSE="$prefix[07m$suffix"
+
   RESET="[00m"
   BOLD="[01m"
   ITALIC="[03m"
@@ -17,12 +41,14 @@ init_colours () {
   REVERSE="[07m"
 
   if [ `current_shell` = zsh ]; then
-    typeset -Ag FX FG BG
+    typeset -Ag FG BG PFG PBG
   fi
 
   for color in {0..255}; do
     FG[$color]="[38;5;${color}m"
     BG[$color]="[48;5;${color}m"
+    PFG[$color]="$prefix[38;5;${color}m$suffix"
+    PBG[$color]="$prefix[48;5;${color}m$suffix"
   done
 
   colours () {

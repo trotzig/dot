@@ -9,22 +9,20 @@ precmd () {
 
   # Update terminal title bar if one is available
   if [[ "$TERM" =~ xterm* ]]; then
-    echo -en "\033]0;$(__prompt_user)@$(__prompt_host):$(__prompt_curdir)\007"
+    echo -en "\033]0;$USER@$(hostname):$(__prompt_curdir)\007"
   fi
 }
 
 # Prompt escape variables differ between shells, so use functions instead
-__prompt_user () { whoami; }
-__prompt_host () { hostname; }
 __prompt_curdir () {
-  local dir=`pwd`
+  local dir="$PWD"
   echo "${dir/#$HOME/~}"
 }
 
 __git_prompt () {
   local branch=`active_git_branch`
   if [ ! -z "$branch" ]; then
-    echo " $branch`git_tree_status`"
+    echo " `git_branch_ahead`$branch`git_tree_status`"
   else
     echo ""
   fi
@@ -37,16 +35,16 @@ __virtualenv_prompt () {
   fi
 }
 
-PS1="${RESET}${FG[240]}\$(__prompt_user)${RESET}"
-PS1="${PS1}${FG[234]}@${FG[245]}\$(__prompt_host)${RESET}"
-PS1="${PS1}${FG[234]}:${FG[136]}\$(__prompt_curdir)${RESET}"
-PS1="${PS1}${FG[64]}\$(__git_prompt)${RESET}"
-PS1="${PS1}${FG[61]}\$(__virtualenv_prompt)${RESET}"
+PS1="${PRESET}${PFG[240]}\$USER${PRESET}"
+PS1="${PS1}${PFG[234]}@${PFG[245]}\$(hostname)${PRESET}"
+PS2="${PS1}${PFG[234]}:${PFG[136]}\$(__prompt_curdir)${PRESET}"
+PS1="${PS1}${PFG[64]}\$(__git_prompt)${PRESET}"
+PS1="${PS1}${PFG[61]}\$(__virtualenv_prompt)${PRESET}"
 PS1="${PS1}
-${FG[240]}\$(current_shell)${FG[33]}⨠ ${RESET}"
+${PFG[240]}\$(current_shell)${PFG[33]}⨠ ${PRESET}"
 
 # Prompt to display at beginning of next line when command spans multiple lines
-PS2="${FG[33]}↳${RESET} "
+PS2="${PFG[33]}↳${PRESET} "
 
 # Debug line prefix
 PS4="→ `[ "$0" != -bash ] && echo ${FG[64]}$0:${FG[33]}$LINENO || echo` ${RESET}"
