@@ -10,7 +10,7 @@ set -e
 # Define DOTDIR as location of this repository
 export DOTDIR="$( cd "$( dirname "$0" )" && pwd )"
 
-source "$DOTDIR/shell/lib.sh"
+source "$DOTDIR/bootstrap/lib.sh"
 
 backup () {
   local file=$1
@@ -53,7 +53,7 @@ EOF
   mv "$tmp_file" "$conf_file"
 done
 
-for install_script in `find $DOTDIR/install/ -maxdepth 1 -name "*.sh"`; do
+for install_script in `find $DOTDIR/plugins -name "install.sh"`; do
   # Each script defines an `install` function which we call
-  source $install_script && install && unset install
+  source "$install_script" && install && unset install
 done
