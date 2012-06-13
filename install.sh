@@ -54,7 +54,7 @@ EOF
   mv "$tmp_file" "$conf_file"
 done
 
-for install_script in `find $DOTDIR/plugins -name "install.sh"`; do
+for install_script in `find $DOTPLUGINSDIR -name "install.sh"`; do
   # Define variable for each plugin so install script can use it for convenience
   DOTPLUGIN=`dirname $install_script`
   # Each script defines an `install` function which we call

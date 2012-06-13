@@ -14,7 +14,7 @@ bootstrap () {
   local shell=`current_shell`
 
   # For each plugin
-  for DOTPLUGIN in `find $DOTDIR/plugins -type d -mindepth 1 -maxdepth 1`; do
+  for DOTPLUGIN in `find $DOTPLUGINSDIR -type d -mindepth 1 -maxdepth 1`; do
     # Source files from environment and library files
     for type in `echo "lib env" | words`; do
 

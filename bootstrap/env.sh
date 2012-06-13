@@ -2,6 +2,7 @@
 
 # Directory that any log files should be stored in
 export DOTLOGDIR="$DOTDIR/log"
+export DOTPLUGINSDIR="$DOTDIR/plugins"
 
 # Prefer applications from home bin if one exists
 export PATH="$HOME/bin:$PATH"
