@@ -53,7 +53,8 @@ with an `install.sh` script which symlinks these files to the user's home
 directory.
 
 Look at the `plugins` directory for examples of how this organizational system
-works in practice.
+works in practice. The environment variables `DOTDIR`, `DOTPLUGIN`, and
+`DOTLOGDIR` are useful when writing your own plugins.
 
 ## Etymology
 'Dot' comes from the fact that it ultimately manages 'dot' files, and is a
