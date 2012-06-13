@@ -25,7 +25,7 @@ alias () {
 
   local alias_name=`echo $mapping | cut -d'=' -f 1`
 
-  if [ -z `builtin alias $alias_name 2>/dev/null` ]; then
+  if [ -z "`builtin alias $alias_name 2>/dev/null`" ]; then
     builtin alias "$@"
   else
     echo "Error: $alias_name already aliased to `builtin alias $alias_name`"
