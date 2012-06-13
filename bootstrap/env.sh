@@ -31,6 +31,10 @@ init_colours () {
   PUNDERLINE="$prefix[04m$suffix"
   PBLINK="$prefix[05m$suffix"
   PREVERSE="$prefix[07m$suffix"
+  # TODO: Write a script that checks the current cursor column, and only resets
+  # the cursor if the column is not the first column
+  #PSTARTLINE="$prefix[G$suffix" # Move cursor to the start of current line
+  PSTARTLINE=""
 
   RESET="[00m"
   BOLD="[01m"
