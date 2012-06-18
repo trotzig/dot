@@ -19,7 +19,7 @@
   plrb = pull --rebase
   sm = submodule
   smu = submodule update --init
-  st = status
+  st = status -sb
   staged = diff --cached
   sync = !sh -c 'git fetch --all && git rebase ${1-`echo origin/master`}'
   unstage = !sh -c 'git reset HEAD $1'
