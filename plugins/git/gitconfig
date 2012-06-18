@@ -4,6 +4,7 @@
   br = branch
   ci = commit -v
   co = checkout
+  d = diff
   fixup = !sh -c 'git commit --fixup $1 && \
                   git stash && \
                   git rebase -i $1~1 && \
