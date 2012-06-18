@@ -13,14 +13,14 @@ bootstrap () {
   local exts=sh
   local shell=`current_shell`
 
+  # Include shell-specific extension in list of files to source after .sh files
   if [ "$shell" != sh ]; then
-    # Include custom shell extension in list of files to source
     exts="$exts $shell"
   fi
 
-  # For each plugin
+  # For each plugin...
   for DOTPLUGIN in `find $DOTPLUGINSDIR -type d -mindepth 1 -maxdepth 1`; do
-    # Source files from environment and library files
+    # Source environment and library files
     for type in `echo "lib env" | words`; do
       # Source the generic .sh files first, then the shell-specific ones
       for ext in `echo $exts | words`; do
@@ -29,6 +29,20 @@ bootstrap () {
         fi
       done
     done
+
+    # Perform any shell-specific tasks for loading this plugin
+    local src_file="$DOTDIR/bootstrap/plugin.$shell"
+    if [ -s "$src_file" ]; then
+      source "$src_file"
+    fi
+  done
+
+  # Perform any final shell-specific tasks
+  for ext in `echo $exts | words`; do
+    local src_file="$DOTDIR/bootstrap/finish.$ext"
+    if [ -s "$src_file" ]; then
+      source "$src_file"
+    fi
   done
 }
 
