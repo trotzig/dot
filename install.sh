@@ -76,7 +76,7 @@ main () {
 
   # Write shell config files to point to bootstrap script
   for file in `echo ".bash_profile .zshrc" | words`; do
-    tmp_file="$TMPDIR/$file"
+    tmp_file="$HOME/tmp-$file"
     conf_file="$HOME/$file"
 
     cat > "$tmp_file" <<EOF
