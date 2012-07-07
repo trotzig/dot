@@ -19,7 +19,7 @@ bootstrap () {
   fi
 
   # For each plugin...
-  for DOTPLUGIN in `find $DOTPLUGINSDIR -type d -mindepth 1 -maxdepth 1`; do
+  for DOTPLUGIN in `find $DOTPLUGINSDIR -mindepth 1 -maxdepth 1 -type d`; do
     # Source environment and library files
     for type in `echo "lib env" | words`; do
       # Source the generic .sh files first, then the shell-specific ones
