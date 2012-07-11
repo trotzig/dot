@@ -1,6 +1,6 @@
 # Main prompt line
 PS1="${PSTARTLINE}${PRESET}${PFG[240]}\$USER${PRESET}"
-PS1="${PS1}${PFG[234]}@${PFG[245]}\$(hostname)${PRESET}"
+PS1="${PS1}${PFG[234]}@${PFG[245]}\$(hostname -s)${PRESET}"
 PS1="${PS1}${PFG[234]}:${PFG[136]}\$(__prompt_curdir)${PRESET}"
 PS1="${PS1}${PFG[64]}\$(__git_prompt)${PRESET}"
 PS1="${PS1}${PFG[61]}\$(__virtualenv_prompt)${PRESET}"
