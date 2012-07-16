@@ -11,18 +11,23 @@
                   git stash pop' -
   graph = log --oneline --graph --decorate
   hash = !sh -c 'git rev-parse ${1-`echo HEAD`}' -
+  hr = reset --hard
   lg = log --oneline --graph --decorate
   p = add --patch
   patch = add --patch
-  pom = push origin master
   pl = pull
   plrb = pull --rebase
+  refresh = !sh -c 'git stash && \
+                    git fetch origin && \
+                    git rebase origin/master && \
+                    git stash pop' -
   sm = submodule
   smu = submodule update --init
   st = status -sb
   staged = diff --cached
   sync = !sh -c 'git fetch --all && git rebase ${1-`echo origin/master`}'
   unstage = !sh -c 'git reset HEAD $1'
+  unstash = stash pop
 [apply]
   whitespace = fix
 [branch "master"]
@@ -68,4 +73,4 @@
   enabled = 1
 [user]
   name = Shane da Silva
-  email = shane.m.dasilva@gmail.com
+  email = shane@dasilva.io
