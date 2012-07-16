@@ -33,6 +33,11 @@ alias () {
   fi
 }
 
+# Ignore any previous alias mappings in certain cases
+forcealias() {
+  builtin alias "$@"
+}
+
 # Print words of from a file/STDIN onto separate lines.
 words () {
   awk '{c=split($0, s); for(n=1; n<=c; ++n) print s[n] }' $1
