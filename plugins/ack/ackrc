@@ -4,3 +4,5 @@
 --ignore-dir=tmp
 --ignore-dir=doc
 --ignore-dir=coverage
+--type-add=css=.sass,.scss
+--type-add=ruby=.erb,.haml,.rake,.rb,.rhtml,.rjs,.rxml,.rsel,.spec
