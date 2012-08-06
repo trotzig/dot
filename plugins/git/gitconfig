@@ -19,13 +19,13 @@
   plrb = pull --rebase
   refresh = !sh -c 'git fetch origin && \
                     git stash && \
+                    git submodule update --init && \
                     git rebase origin/master && \
                     git stash pop' -
   sm = submodule
   smu = submodule update --init
   st = status -sb
   staged = diff --cached
-  sync = !sh -c 'git fetch --all && git rebase ${1-`echo origin/master`}'
   unstage = !sh -c 'git reset HEAD $1'
   unstash = stash pop
 [apply]
