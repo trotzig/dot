@@ -1,4 +1,6 @@
 [alias]
+  author = !sh -c 'git config --get user.name && \
+                   git config --get user.email'
   authors = shortlog -sne --no-merges
   amend = commit --amend
   br = branch
