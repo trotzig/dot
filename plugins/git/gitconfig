@@ -18,7 +18,6 @@
   p = add --patch
   patch = add --patch
   pl = pull
-  plrb = pull --rebase
   refresh = !sh -c 'git fetch origin && \
                     git stash && \
                     git submodule update --init && \
