@@ -38,7 +38,7 @@ forcealias() {
   builtin alias "$@"
 }
 
-# Print words of from a file/STDIN onto separate lines.
+# Print words from string onto separate lines
 words () {
-  awk '{c=split($0, s); for(n=1; n<=c; ++n) print s[n] }' $1
+  echo "$@" | tr -s " " "\012"
 }

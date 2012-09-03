@@ -46,15 +46,32 @@ Next, any file with the shell-specific extension of the current shell (e.g.
 `.bash` or `.zsh`) is loaded to run commands specific to that shell. This
 allows you to tweak your configuration on a per-shell basis.
 
-In each plugin, there may also be an installation script `install.sh`, and
+In each plugin, there may also be an installation script `setup.sh`, and
 other configuration files related to the plugin. For example, a plugin
 directory for git would likely have `gitconfig` and `gitignore` files, along
-with an `install.sh` script which symlinks these files to the user's home
+with an `setup.sh` script which symlinks these files to the user's home
 directory.
 
 Look at the `plugins` directory for examples of how this organizational system
-works in practice. The environment variables `DOTDIR`, `DOTPLUGIN`, and
-`DOTLOGDIR` are useful when writing your own plugins.
+works in practice. The environment variables `DOTDIR`, `DOTPLUGIN`,
+`DOTLOGDIR`, and `DOTTMPDIR` are useful when writing your own plugins.
+
+## Writing a Plugin
+Writing your own plugin with Dot is designed to be easy. To start, you need
+to identify what you want your plugin to do.
+
+  * Does it install files in your home directory?
+  * Does it set any environment variables?
+  * Does it declare any aliases or functions for use in your shell?
+
+If you're installing any sort of files or repository, you'll need to add a
+`setup.sh` script to your plugin, and in that either have a `setup` function
+which makes the appropriate calls to `symlink`, `file`, `repo`, etc., or
+individual `install`/`uninstall` functions to carry out the install/uninstall
+commands by hand.
+
+If you're setting environment variables, aliases, or defining custom functions,
+these should go in the `env.sh` or `lib.sh` files, as appropriate.
 
 ## Etymology
 'Dot' comes from the fact that it ultimately manages 'dot' files, and is a

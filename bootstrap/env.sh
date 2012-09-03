@@ -1,7 +1,8 @@
 # Defines environment variables and other settings that are used everywhere
 
-# Directory that any log files should be stored in
+# Useful variables for plugin setup
 export DOTLOGDIR="$DOTDIR/log"
+export DOTTMPDIR="$DOTDIR/tmp"
 export DOTPLUGINSDIR="$DOTDIR/plugins"
 
 # Prefer applications from home bin if one exists
