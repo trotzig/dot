@@ -5,13 +5,40 @@
 
 [ -z "$DOTDIR" ] && echo '$DOTDIR environment variable not set' && exit 1
 
-bootstrap () {
-  # Load library of helper functions and initialize global environment
-  source "$DOTDIR/bootstrap/lib.sh"
-  source "$DOTDIR/bootstrap/env.sh"
+# Load library of helper functions and initialize global environment
+source "$DOTDIR/bootstrap/lib.sh"
+source "$DOTDIR/bootstrap/env.sh"
+source "$DOTDIR/bootstrap/update.sh"
 
+check_for_dot_update () {
+  local last_check_file="$DOTTMPDIR/dot-last-check-time"
+  local current_day=`date -u +%Y-%m-%d`
+
+  if [ ! -e "$last_check_file" ]; then
+    touch "$last_check_file"
+  fi
+
+  if [ "`cat $last_check_file`" != "$current_day" ]; then
+    echo "$current_day" > "$DOTTMPDIR/dot-last-check-time"
+
+    read -p "Check for updates to Dot? (y/n) "
+    if [ "$REPLY" == "y" ] && update_dot; then
+      # Reload the updated version of this script if an update occurred
+      source "$DOTDIR/bootstrap/startup.sh"
+      return 1
+    else
+      echo "Execute '$DOTDIR/update' to update Dot manually at any time"
+    fi
+  fi
+}
+
+bootstrap () {
   local exts=sh
   local shell=`current_shell`
+
+  if ! check_for_dot_update; then
+    return # Reload occurred
+  fi
 
   # Include shell-specific extension in list of files to source after .sh files
   if [ "$shell" != sh ]; then
