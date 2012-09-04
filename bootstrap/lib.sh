@@ -34,7 +34,8 @@ alias () {
 }
 
 # Ignore any previous alias mappings in certain cases
-forcealias() {
+# (so we don't get a warning on startup of an alias already existing)
+forcealias () {
   builtin alias "$@"
 }
 
