@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+old_head=`git rev-parse HEAD`
+local_branch=`git name-rev --name-only HEAD`
+remote_branch=`git config branch.${local_branch}.merge | sed 's/^refs\/heads\///'`
+remote=`git config branch.${local_branch}.remote`
+cur_revision=`git rev-parse ${remote}/${remote_branch}`
+
+git fetch ${remote}
+
+if [ "`git rev-parse ${remote}/${remote_branch}`" != "$cur_revision" ]; then
+  if ! git diff-index --quiet HEAD; then
+    git stash --keep-index && stashed=1;
+  fi
+
+  echo "Rebasing ${local_branch} with changes from ${remote}/${remote_branch}"
+  if ! git rebase ${local_branch} --onto ${remote}/${remote_branch}; then
+    echo "#####################################################################"
+    echo "UNABLE TO REBASE: '${local_branch}' has diverged from '${remote}/${remote_branch}'"
+    echo "#####################################################################"
+    git rebase --abort
+  fi
+
+  if [ -n "${stashed}" ]; then
+    git stash pop --index
+  fi
+
+  git submodule update --init
+fi

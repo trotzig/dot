@@ -7,16 +7,12 @@
   ci = commit -v
   co = checkout
   d = diff
+  fresh = "!f() { $DOTDIR/plugins/git/scripts/fresh "$@"; }; f"
   hash = !sh -c 'git rev-parse ${1-`echo HEAD`}' -
   hr = reset --hard
   lg = log --oneline --graph --decorate
   p = add --patch
   pl = pull
-  refresh = !sh -c 'git fetch origin && \
-                    git stash && \
-                    git submodule update --init && \
-                    git rebase origin/master && \
-                    git stash pop' -
   rb = rebase
   sm = submodule
   smu = submodule update --init
@@ -26,6 +22,8 @@
   unstash = stash pop
 [apply]
   whitespace = fix
+[branch]
+  autosetupmerge = true
 [branch "master"]
   rebase = true
 [color]
