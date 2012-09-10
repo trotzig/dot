@@ -2,15 +2,11 @@
   author = !sh -c 'git config --get user.name && \
                    git config --get user.email'
   authors = shortlog -sne --no-merges
-  amend = commit --amend
+  amend = "!f() { $DOTDIR/plugins/git/scripts/amend "$@"; }; f"
   br = branch
   ci = commit -v
   co = checkout
   d = diff
-  fixup = !sh -c 'git commit --fixup $1 && \
-                  git stash && \
-                  git rebase -i $1~1 && \
-                  git stash pop' -
   graph = log --oneline --graph --decorate
   hash = !sh -c 'git rev-parse ${1-`echo HEAD`}' -
   hr = reset --hard
