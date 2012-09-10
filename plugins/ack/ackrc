@@ -2,6 +2,7 @@
 --ignore-dir=vendor
 --ignore-dir=log
 --ignore-dir=tmp
+--ignore-dir=data
 --ignore-dir=doc
 --ignore-dir=coverage
 --ignore-dir=_site
