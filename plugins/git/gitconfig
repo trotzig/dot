@@ -23,6 +23,7 @@
                     git submodule update --init && \
                     git rebase origin/master && \
                     git stash pop' -
+  rb = rebase
   sm = submodule
   smu = submodule update --init
   st = status -sb
