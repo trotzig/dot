@@ -5,6 +5,7 @@
   amend = "!f() { $DOTDIR/plugins/git/scripts/amend "$@"; }; f"
   br = branch
   ci = commit -v
+  ctags = "!f() { $DOTDIR/plugins/git/scripts/ctags "$@"; }; f"
   co = checkout
   d = diff
   fresh = "!f() { $DOTDIR/plugins/git/scripts/fresh "$@"; }; f"

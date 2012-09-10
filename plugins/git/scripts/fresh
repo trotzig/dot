@@ -26,4 +26,6 @@ if [ "`git rev-parse ${remote}/${remote_branch}`" != "$cur_revision" ]; then
   fi
 
   git submodule update --init
+
+  git ctags
 fi
