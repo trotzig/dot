@@ -13,7 +13,7 @@ else
   # Otherwise we need to do a rebase
   if ! git diff-index --cached --quiet HEAD; then
     # Only commit if there are changes in the index
-    git commit --fixup ${revision_to_fix}
+    git commit --fixup ${revision_to_fix} || exit 1
   fi
 
   # Stash if necessary so we can rebase
