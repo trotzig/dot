@@ -137,7 +137,6 @@ setup_dot_plugin () {
   DOTPLUGIN="$plugin_dir"
 
   source "$script"
-  echo "$script"
   for func in `words setup $DOTSETUPTYPE`; do
     [ "`type -t $func`" = "function" ] && $func
   done
