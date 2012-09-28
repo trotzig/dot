@@ -1,29 +1,48 @@
 #!/usr/bin/env bash
 
-old_head=`git rev-parse HEAD`
-local_branch=`git name-rev --name-only HEAD`
-remote_branch=`git config branch.${local_branch}.merge | sed 's/^refs\/heads\///'`
-remote=`git config branch.${local_branch}.remote`
-cur_revision=`git rev-parse ${remote}/${remote_branch}`
-
-git fetch ${remote}
-
-if [ "`git rev-parse ${remote}/${remote_branch}`" != "$cur_revision" ]; then
+git-refresh () {
   if ! git diff-index --quiet HEAD; then
-    git stash --keep-index && stashed=1;
+    echo "You have local changes; either stash them or get rid of them"
+    exit
   fi
 
-  echo "Rebasing ${local_branch} with changes from ${remote}/${remote_branch}"
-  if ! git rebase ${local_branch} --onto ${remote}/${remote_branch}; then
-    echo "#####################################################################"
-    echo "UNABLE TO REBASE: '${local_branch}' has diverged from '${remote}/${remote_branch}'"
-    echo "#####################################################################"
-    git rebase --abort
+  local old_head=`git rev-parse HEAD`
+  local local_branch=`git symbolic-ref -q HEAD | sed 's/^refs\/heads\///'`
+
+  if [ -z "${local_branch}" ]; then
+    echo "HEAD is currently detached--aborting."
   fi
 
-  if [ -n "${stashed}" ]; then
-    git stash pop --index
+  local remote_branch=`git config branch.${local_branch}.merge | sed 's/^refs\/heads\///'`
+  local remote=`git config branch.${local_branch}.remote`
+
+  # If remote is local repository, then we're tracking a local branch
+  # We want to fetch that branch's remote branch, so change to it and recurse
+  if [ "$remote" == "." ]; then
+    # Switch to tracking branch, refresh it, and switch back to our branch
+    git checkout "${remote_branch}"
+    git-refresh
+    git checkout "${local_branch}"
   fi
 
-  git submodule update --init
-fi
+  if [ "${remote}" == "." ]; then
+    local rebase_ref="${remote_branch}"
+  else
+    git fetch ${remote}
+    local rebase_ref="${remote}/${remote_branch}"
+  fi
+
+  if [ -n "`git rev-list ${local_branch}..${rebase_ref}`" ]; then
+    echo "Rebasing ${local_branch} with changes from ${rebase_ref}"
+    if ! git rebase ${rebase_ref}; then
+      echo "#####################################################################"
+      echo "UNABLE TO REBASE: '${local_branch}' has diverged from '${rebase_ref}'"
+      echo "#####################################################################"
+      git rebase --abort
+    fi
+
+    git submodule update --init
+  fi
+}
+
+git-refresh
