@@ -20,15 +20,7 @@ check_for_dot_update () {
 
   if [ "`cat $last_check_file`" != "$current_day" ]; then
     echo "$current_day" > "$DOTTMPDIR/dot-last-check-time"
-
-    read -p "Check for updates to Dot? (y/n) "
-    if [ "$REPLY" == "y" ] && update_dot; then
-      # Reload the updated version of this script if an update occurred
-      source "$DOTDIR/bootstrap/startup.sh"
-      return 1
-    else
-      echo "Execute '$DOTDIR/update' to update Dot manually at any time"
-    fi
+    echo "Run '$DOTDIR/update' to update Dot"
   fi
 }
 
