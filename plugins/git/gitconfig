@@ -3,7 +3,7 @@
                    git config --get user.email'
   authors = shortlog -sne --no-merges
   amend = "!f() { $DOTDIR/plugins/git/scripts/amend "$@"; }; f"
-  br = branch
+  br = branch -v -v
   ci = commit -v
   ctags = "!f() { $DOTDIR/plugins/git/scripts/ctags "$@"; }; f"
   co = checkout
