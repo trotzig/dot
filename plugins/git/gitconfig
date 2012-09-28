@@ -24,9 +24,8 @@
 [apply]
   whitespace = fix
 [branch]
-  autosetupmerge = true
-[branch "master"]
-  rebase = true
+  autosetupmerge = always
+  autosetuprebase = always
 [color]
   ui = auto
 [color "branch"]
