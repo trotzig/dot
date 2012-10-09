@@ -37,7 +37,7 @@ git-refresh () {
     if ! git rebase ${rebase_ref}; then
       echo "#####################################################################"
       echo "UNABLE TO REBASE: '${local_branch}' has diverged from '${rebase_ref}'"
-      echo "#####################################################################"
+      echo "Run 'git rebase ${rebase_ref}' to deal with this conflict manually"
       git rebase --abort
     fi
 
