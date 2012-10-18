@@ -74,6 +74,9 @@
   excludesfile = ~/.gitignore
 [github]
   user = sds
+[grep]
+  extendedRegexp = true
+  lineNumber     = true
 [help]
   autocorrect = 10
 [merge]
