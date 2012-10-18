@@ -1,30 +1,30 @@
 [alias]
-  author = !sh -c 'git config --get user.name && \
-                   git config --get user.email'
+  author  = !sh -c 'git config --get user.name && \
+                    git config --get user.email'
   authors = shortlog -sne --no-merges
-  amend = "!f() { $DOTDIR/plugins/git/scripts/amend "$@"; }; f"
-  br = branch -v -v
-  ci = commit -v
-  ctags = "!f() { $DOTDIR/plugins/git/scripts/ctags "$@"; }; f"
-  co = checkout
-  d = diff
-  fresh = "!f() { $DOTDIR/plugins/git/scripts/fresh "$@"; }; f"
-  hash = !sh -c 'git rev-parse ${1-HEAD}' -
-  hr = reset --hard
-  lg = log --oneline --graph --decorate
-  p = add --patch
-  pl = pull
-  rb = rebase
-  sm = submodule
-  smu = submodule update --init
-  st = status -sb
-  staged = diff --cached
-  unstage = !sh -c 'git reset HEAD $1'
+  amend   = "!f() { $DOTDIR/plugins/git/scripts/amend "$@"; }; f"
+  br      = branch -v -v
+  ci      = commit -v
+  ctags   = "!f() { $DOTDIR/plugins/git/scripts/ctags "$@"; }; f"
+  co      = checkout
+  d       = diff
+  fresh   = "!f() { $DOTDIR/plugins/git/scripts/fresh "$@"; }; f"
+  hash    = !sh -c 'git rev-parse ${1-HEAD}' -
+  hr      = reset --hard
+  lg      = log --oneline --graph --decorate
+  p       = add --patch
+  pl      = pull
+  rb      = rebase
+  sm      = submodule
+  smu     = submodule update --init
+  st      = status -sb
+  staged  = diff --cached
+  unstage = !sh -c 'git reset HEAD'
   unstash = stash pop
 [apply]
   whitespace = fix
 [branch]
-  autosetupmerge = always
+  autosetupmerge  = always
   autosetuprebase = always
 [color]
   ui = auto
@@ -70,7 +70,7 @@
   nobranch     = red bold
   untracked    = normal
 [core]
-  autocrlf = input
+  autocrlf     = input
   excludesfile = ~/.gitignore
 [github]
   user = sds
@@ -87,9 +87,9 @@
   default = current
 [rebase]
   autosquash = true
-  stat = true
+  stat       = true
 [rerere]
   enabled = 1
 [user]
-  name = Shane da Silva
+  name  = Shane da Silva
   email = shane@dasilva.io
