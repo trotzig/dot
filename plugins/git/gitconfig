@@ -29,25 +29,46 @@
 [color]
   ui = auto
 [color "branch"]
-  current = green reverse
-  local = green
-  remote = cyan
+  current      = green bold
+  local        = bold
+  plain        = normal
+  remote       = cyan bold
+[color "decorate"]
+  branch       = white bold
+  remoteBranch = cyan bold
+  tag          = red
+  stash        = magenta
+  HEAD         = green
 [color "diff"]
-  commit = yellow bold
-  frag = cyan
-  meta = bold
-  new = green bold
-  untracked = bold
-  whitespace = yellow reverse
+  commit       = yellow bold
+  frag         = cyan
+  func         = bold cyan
+  meta         = bold
+  new          = green bold
+  plain        = normal
+  old          = red bold
+  untracked    = bold
+  whitespace   = yellow reverse
+[color "grep"]
+  context      = normal
+  filename     = green bold
+  function     = cyan bold
+  linenumber   = yellow bold
+  match        = yellow reverse
+  selected     = normal
+  separator    = normal
 [color "interactive"]
-  error = red bold
-  header = cyan
-  help = yellow
-  prompt = green bold
+  error        = red bold
+  header       = cyan
+  help         = yellow bold
+  prompt       = magenta bold
 [color "status"]
-  added = green
-  changed = red
-  untracked = bold
+  header       = cyan
+  added        = green bold
+  branch       = green bold
+  changed      = red bold
+  nobranch     = red bold
+  untracked    = normal
 [core]
   autocrlf = input
   excludesfile = ~/.gitignore
