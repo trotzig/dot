@@ -1,6 +1,6 @@
 # Initialize zsh completion system
 autoload -U compinit
-compinit
+compinit -d "${DOTTMPDIR}/zcompdump"
 
 zmodload zsh/complist
 
