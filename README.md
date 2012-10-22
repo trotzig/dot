@@ -22,7 +22,7 @@ Clone the repository:
 Run the install script:
 
     cd ~/dot
-    ./install.sh
+    ./install
 
 You're all set. Don't worry, Dot will backup any dot files it replaces.
 
@@ -32,11 +32,10 @@ Dot allows you to organize configuration settings into logical groups. The
 `ssh` folder for SSH-related settings, or a `git` folder for git-related
 settings).
 
-Each of these folders can contains files of the form
-`{env,lib}.{sh,bash,zsh}`. `lib` files are loaded first, and should contain
-the definitions of functions that are used for the given plugin. `env` files
-are loaded next, and make any other environment-related changes to the current
-shell (e.g. exporting variables).
+Each of these directories can contains files of the form
+`plugin.{sh,bash,zsh}`. `plugin` files are loaded on shell startup, and perform
+any environment initialization (e.g. exporting variables) to support the
+particular plugin.
 
 For any file that is loaded from a plugin, the `.sh` extension is loaded
 first. `.sh` files are intended to represent code that runs regardless of
@@ -71,7 +70,7 @@ individual `install`/`uninstall` functions to carry out the install/uninstall
 commands by hand.
 
 If you're setting environment variables, aliases, or defining custom functions,
-these should go in the `env.sh` or `lib.sh` files, as appropriate.
+these should go in the `plugin.sh` file.
 
 ## Etymology
 'Dot' comes from the fact that it ultimately manages 'dot' files, and is a

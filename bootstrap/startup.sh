@@ -6,9 +6,7 @@
 [ -z "$DOTDIR" ] && echo '$DOTDIR environment variable not set' && exit 1
 
 # Load library of helper functions and initialize global environment
-source "$DOTDIR/bootstrap/lib.sh"
-source "$DOTDIR/bootstrap/env.sh"
-source "$DOTDIR/bootstrap/update.sh"
+source "$DOTDIR/bootstrap/init.sh"
 
 check_for_dot_update () {
   local last_check_file="$DOTTMPDIR/dot-last-check-time"
@@ -39,14 +37,11 @@ bootstrap () {
 
   # For each plugin...
   for DOTPLUGIN in `find $DOTPLUGINSDIR -mindepth 1 -maxdepth 1 -type d`; do
-    # Source environment and library files
-    for type in `words lib env`; do
-      # Source the generic .sh files first, then the shell-specific ones
-      for ext in `words $exts`; do
-        if [ -s "$DOTPLUGIN/$type.$ext" ]; then
-          source "$DOTPLUGIN/$type.$ext"
-        fi
-      done
+    # Source the generic .sh files first, then the shell-specific ones
+    for ext in `words $exts`; do
+      if [ -s "$DOTPLUGIN/plugin.$ext" ]; then
+        source "$DOTPLUGIN/plugin.$ext"
+      fi
     done
 
     # Perform any shell-specific tasks for loading this plugin

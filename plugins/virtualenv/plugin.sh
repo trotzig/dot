@@ -1,3 +1,7 @@
+active_virtual_env () {
+  [[ -n "$VIRTUAL_ENV" ]] && echo -n `basename $VIRTUAL_ENV`
+}
+
 # Don't prepend ugly "(virtualenv_name)" to prompt when activating env.
 # PS1 has been set to display virtualenv if one is activated.
 export VIRTUAL_ENV_DISABLE_PROMPT=true

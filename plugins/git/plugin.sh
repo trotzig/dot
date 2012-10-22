@@ -1,3 +1,5 @@
+alias g=git
+
 git () {
   ssh-ensure-agent
   command git "$@"

@@ -156,8 +156,7 @@ setup () {
       echo "Invalid installation type. Must be 'install' or 'uninstall'" ;;
   esac
 
-  source "$DOTDIR/bootstrap/lib.sh"
-  source "$DOTDIR/bootstrap/env.sh"
+  source "$DOTDIR/bootstrap/init.sh"
 
   if [ -n "$specific_plugin" ]; then
     setup_dot_plugin $specific_plugin

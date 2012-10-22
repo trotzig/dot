@@ -1,3 +1,6 @@
+# Serve files in current directory
+alias serve="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
+
 extract () {
   if [ -f $1 ] ; then
     case $1 in

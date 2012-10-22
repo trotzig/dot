@@ -1,3 +1,5 @@
+alias t=tmux
+
 # Automatically name sessions to the directory from which we started tmux
 tmux () {
   if [ -z "$@" ]; then
