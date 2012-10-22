@@ -6,8 +6,8 @@ export DOTLOGDIR="$DOTDIR/log"
 export DOTTMPDIR="$DOTDIR/tmp"
 export DOTPLUGINSDIR="$DOTDIR/plugins"
 
-# Prefer applications from home bin if one exists
-export PATH="$HOME/bin:$PATH"
+# Prefer applications from HOME bin
+export PATH="$HOME/bin:/usr/local/bin:$PATH"
 
 # Returns a string representing the shell running this script
 current_shell () {
