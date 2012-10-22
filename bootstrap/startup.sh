@@ -30,6 +30,8 @@ bootstrap () {
     return # Reload occurred
   fi
 
+  init_dot_colours
+
   # Include shell-specific extension in list of files to source after .sh files
   if [ "$shell" != sh ]; then
     exts="$exts $shell"

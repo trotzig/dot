@@ -46,7 +46,7 @@ words () {
 }
 
 # Make working with colour escape codes easier
-init_colours () {
+init_dot_colours () {
   local prefix=''
   local suffix=''
   local shell=`current_shell`
@@ -99,4 +99,3 @@ init_colours () {
     done
   }
 }
-init_colours && unset init_colours
