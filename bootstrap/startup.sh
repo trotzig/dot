@@ -8,27 +8,9 @@
 # Load library of helper functions and initialize global environment
 source "$DOTDIR/bootstrap/init.sh"
 
-check_for_dot_update () {
-  local last_check_file="$DOTTMPDIR/dot-last-check-time"
-  local current_day=`date -u +%Y-%m-%d`
-
-  if [ ! -e "$last_check_file" ]; then
-    touch "$last_check_file"
-  fi
-
-  if [ "`cat $last_check_file`" != "$current_day" ]; then
-    echo "$current_day" > "$DOTTMPDIR/dot-last-check-time"
-    echo "Run '$DOTDIR/update' to update Dot"
-  fi
-}
-
 bootstrap () {
   local exts=sh
   local shell=`current_shell`
-
-  if ! check_for_dot_update; then
-    return # Reload occurred
-  fi
 
   init_dot_colours
 
