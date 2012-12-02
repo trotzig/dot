@@ -1,28 +1,28 @@
 [alias]
-  author  = !sh -c 'git config --get user.name && \
-                    git config --get user.email'
-  authors = shortlog -sne --no-merges
-  amend   = "!f() { $DOTDIR/plugins/git/scripts/amend "$@"; }; f"
-  br      = branch -v -v
-  ci      = commit -v
-  ctags   = "!f() { $DOTDIR/plugins/git/scripts/ctags "$@"; }; f"
-  co      = checkout
-  d       = diff
-  fresh   = "!f() { $DOTDIR/plugins/git/scripts/fresh "$@"; }; f"
-  hash    = !sh -c 'git rev-parse ${1-HEAD}' -
-  hr      = reset --hard
-  lg      = log --oneline --graph --decorate
-  p       = add --patch
-  pl      = pull
-  rb      = rebase
-  sm      = submodule
-  smu     = submodule update --init
-  st      = status -sb
-  staged  = diff --cached
-  track   = !sh -c 'git branch --set-upstream `git rev-parse --abbrev-ref HEAD` $1' -
+  author   = !sh -c 'git config --get user.name && \
+                     git config --get user.email'
+  authors  = shortlog -sne --no-merges
+  amend    = "!f() { $DOTDIR/plugins/git/scripts/amend "$@"; }; f"
+  br       = branch -v -v
+  ci       = commit -v
+  ctags    = "!f() { $DOTDIR/plugins/git/scripts/ctags "$@"; }; f"
+  co       = checkout
+  d        = diff
+  fresh    = "!f() { $DOTDIR/plugins/git/scripts/fresh "$@"; }; f"
+  hash     = !sh -c 'git rev-parse ${1-HEAD}' -
+  hr       = reset --hard
+  lg       = log --oneline --graph --decorate
+  p        = add --patch
+  pl       = pull
+  rb       = rebase
+  sm       = submodule
+  smu      = submodule update --init
+  st       = status -sb
+  staged   = diff --cached
+  track    = !sh -c 'git branch --set-upstream `git rev-parse --abbrev-ref HEAD` $1' -
   tracking = "!f() { $DOTDIR/plugins/git/scripts/tracking "$@"; }; f"
-  unstage = !sh -c 'git reset HEAD'
-  unstash = stash pop
+  unstage  = !sh -c 'git reset HEAD'
+  unstash  = stash pop
 [apply]
   whitespace = fix
 [branch]
