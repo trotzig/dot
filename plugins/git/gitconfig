@@ -24,6 +24,8 @@
   tracking = "!f() { $DOTDIR/plugins/git/scripts/tracking "$@"; }; f"
   unstage  = !sh -c 'git reset HEAD'
   unstash  = stash pop
+  unwip    = reset HEAD~
+  wip      = commit -m WIP --no-verify
 [apply]
   whitespace = fix
 [branch]
