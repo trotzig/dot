@@ -5,5 +5,5 @@ setup () {
 }
 
 install () {
-  (cd $DOTPLUGIN/.vim && $DOTPLUGIN/.vim/update.sh)
+  (cd $DOTPLUGIN/.vim && $DOTPLUGIN/.vim/update)
 }
