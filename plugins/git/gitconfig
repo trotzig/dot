@@ -97,4 +97,5 @@
   enabled = 1
 [user]
   name  = Shane da Silva
-  email = shane@dasilva.io
+[include]
+  path = ~/.gitconfig.local
