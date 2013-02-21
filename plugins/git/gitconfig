@@ -95,7 +95,5 @@
   stat       = true
 [rerere]
   enabled = 1
-[user]
-  name  = Shane da Silva
 [include]
   path = ~/.gitconfig.local
