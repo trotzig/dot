@@ -95,7 +95,7 @@ init_dot_colours () {
 
   colours () {
     for code in {0..255}; do
-      echo "${reset}$code: ${FG[$code]}Test"
+      printf "${reset}${FG[$code]}%03s: The quick brown fox jumped over the lazy dog\n" "$code"
     done
   }
 }
