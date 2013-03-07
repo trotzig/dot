@@ -4,6 +4,12 @@ ssh () {
   command ssh "$@"
 }
 
+ssh-ensure-agent () {
+  if ! ssh-add -l &> /dev/null; then
+    ssh-reagent &> /dev/null
+  fi
+}
+
 # Reinitialize SSH_AUTH_SOCK environment variable to point to a working SSH
 # agent socket. One situation where the need for this occurs is when your
 # connection drops while in a tmux session. The session will have its
@@ -22,20 +28,13 @@ ssh-reagent () {
         ssh-add -l
         return
       else
-        echo "Agent $agent appears dead; removing"
-        rm -r $agent
+        # Ignore the agent if the socket doesn't respond; we don't delete it
+        # since it may just be some weirdness happening that prevents it from
+        # working the first time (very unsatisfactory explanation, I know).
+        echo "Agent $agent appears dead; ignoring"
       fi
     done
   fi
   echo Cannot find SSH agent--maybe you should reconnect and forward it?
   return 1
-}
-
-# Intended to be run before each command.
-# This saves me from having to remember to reconnect to my agent
-# after it gets disconnected in a TMUX session
-ssh-ensure-agent () {
-  if ! ssh-add -l &> /dev/null; then
-    ssh-reagent &> /dev/null
-  fi
 }
