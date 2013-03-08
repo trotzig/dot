@@ -98,4 +98,5 @@ init_dot_colours () {
       printf "${reset}${FG[$code]}%03s: The quick brown fox jumped over the lazy dog\n" "$code"
     done
   }
+  alias colors=colours
 }
