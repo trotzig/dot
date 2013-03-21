@@ -35,7 +35,7 @@ config windowHintsSpread true
 bind e:${motionleader} hint ASDFGHJKL;
 
 # Jump to application shortcuts
-bind f:${motionleader} focus ${browser}
+bind i:${motionleader} focus ${browser}
 bind /:${motionleader} focus ${terminal}
 bind .:${motionleader} focus ${mail}
 bind c:${motionleader} focus ${chat}
