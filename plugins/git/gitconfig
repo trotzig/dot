@@ -16,6 +16,7 @@
   pl       = pull
   rb       = rebase
   rbc      = rebase --continue
+  rbi      = rebase --interactive
   sm       = submodule
   smu      = submodule update --init
   st       = status -sb
