@@ -128,7 +128,7 @@ file () {
 }
 
 # Sets up environment for [un]installation of plugin
-setup_dot_plugin () {
+setup_dot_plugin() {
   local plugin_name=$1
   local plugin_dir="$DOTPLUGINSDIR/$plugin_name"
   local script="$plugin_dir/setup.sh"
@@ -136,25 +136,29 @@ setup_dot_plugin () {
   # Define variable so plugin install script can use it for convenience
   DOTPLUGIN="$plugin_dir"
 
-  source "$script"
-  for func in `words setup $DOTSETUPTYPE`; do
-    [ "`type -t $func`" = "function" ] && $func
-  done
-  unset setup install uninstall DOTPLUGIN
+  # Execute in subshell to prevent functions clobbering namespace
+  (
+    source "$script" &&
+    for func in `words setup $DOTSETUPTYPE`; do
+      if [ "`type -t $func`" = "function" ]; then
+        $func
+      fi
+    done
+  )
 }
 
-setup () {
+setup_dot() {
   local install_type=$1    # Whether this is an install or uninstall
   local specific_plugin=$2 # Can optionally specify plugin
 
-  case "$install_type" in
-    install)
-      export DOTSETUPTYPE="install" ;;
-    uninstall)
-      export DOTSETUPTYPE="uninstall" ;;
-    *)
-      echo "Invalid installation type. Must be 'install' or 'uninstall'" ;;
-  esac
+  if [ "$install_type" = install ]; then
+    export DOTSETUPTYPE="install"
+  elif [ "$install_type" = uninstall ]; then
+    export DOTSETUPTYPE="uninstall"
+  else
+    echo "Invalid installation type '$install_type'. Must be 'install or 'uninstall'"
+    return 1
+  fi
 
   source "$DOTDIR/bootstrap/init.sh"
 
@@ -176,3 +180,8 @@ EOF
     setup_dot_plugin "$plugin"
   done
 }
+
+# Load additional OS-specific helpers
+if [ `uname` = Darwin ]; then
+  source "$DOTDIR/bootstrap/helpers/mac.sh"
+fi

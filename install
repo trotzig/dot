@@ -6,4 +6,4 @@ set -e # Halt on first error
 export DOTDIR="$( cd "$( dirname "$0" )" && pwd )"
 
 source "$DOTDIR/bootstrap/setup.sh"
-setup install "$@"
+setup_dot install "$@"

@@ -1,14 +1,14 @@
 # Dot
 
-Dot is a framework for managing large numbers of dotfile configurations.
+Dot is a framework for managing large numbers of applications and their configurations.
 
 It allows you to:
 
 * Organize your dotfile configurations in any manner you choose
 
-* Allow you to maintain dotfile configurations for different shells
-  simultaneously (useful if you frequently log in to multiple systems with
-  different available shells)
+* Maintain dotfile configurations for different shells simultaneously
+  (useful if you frequently log in to multiple systems with different
+  available shells)
 
 * Specify how your configurations should be installed (where symlinks should
   point to, which repositories to clone, etc), making it easy to get set up
@@ -23,15 +23,13 @@ Clone the repository:
 
 Run the install script:
 
-    cd ~/.dotfiles
-    ./install
+    cd ~/.dotfiles && ./install
 
 You're all set. Don't worry, Dot will backup any dot files it replaces. You
 can uninstall Dot and revert to your previous setup at any time by running
 the `uninstall` script within the Dot directory.
 
-    cd ~/.dotfiles
-    ./uninstall
+    cd ~/.dotfiles && ./uninstall
 
 ## Organization
 

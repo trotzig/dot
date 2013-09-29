@@ -40,6 +40,11 @@ forcealias () {
   builtin alias "$@"
 }
 
+# Return whether executable is recognized (i.e. is in the system path)
+in_path() {
+  command -v $1 >/dev/null 2>&1
+}
+
 # Print words from string onto separate lines
 words () {
   echo "$@" | tr -s " " "\012"
