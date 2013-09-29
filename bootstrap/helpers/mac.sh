@@ -13,7 +13,7 @@ install_package() {
     curl --location --output $pkg $url
   fi
 
-  sudo install -pkg $pkg -target / && rm $pkg
+  sudo installer -pkg $pkg -target / && rm $pkg
 }
 
 formula_installed() {
