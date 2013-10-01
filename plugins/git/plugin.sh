@@ -1,10 +1,5 @@
 alias g=git
 
-git () {
-  ssh-ensure-agent
-  command git "$@"
-}
-
 active_git_branch () {
   local ref=`git symbolic-ref HEAD 2> /dev/null`
   echo "${ref#refs/heads/}"
