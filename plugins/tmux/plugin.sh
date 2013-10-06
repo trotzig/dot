@@ -5,16 +5,18 @@ tmux() {
   # socket by just updating the symlink. Saves us from having to manually reset
   # SSH_AUTH_SOCK using `ssh-reagent` or similar.
   SOCK_SYMLINK=~/.ssh/tmux_ssh_auth_sock
-  [ -r $SSH_AUTH_SOCK ] && ln -sf $SSH_AUTH_SOCK $SOCK_SYMLINK
+  if [ -r "$SSH_AUTH_SOCK" ]; then
+    rm -f $SOCK_SYMLINK && ln -s $SSH_AUTH_SOCK $SOCK_SYMLINK
+    tmux_command="env SSH_AUTH_SOCK=$SOCK_SYMLINK `which tmux`"
+  else
+    tmux_command=`which tmux`
+  fi
 
-  tmux_command="env SSH_AUTH_SOCK=$SOCK_SYMLINK `which tmux`"
 
   if [ -z "$@" ]; then
-    local dir=`basename $(pwd)`
     # Attach to session with the current directory name if one exists,
     # otherwise automatically create a session with the current directory name
-    $tmux_command attach-session -t "$dir" || \
-      $tmux_command new-session -s "$dir"
+    $tmux_command new -A -s "$(basename $(pwd))"
   else
     $tmux_command "$@"
   fi
