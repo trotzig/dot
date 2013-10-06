@@ -1,6 +1,7 @@
 # Dot
 
-Dot is a framework for managing large numbers of applications and their configurations.
+Dot is a framework for managing large numbers of applications and their
+configurations via shell scripts.
 
 It allows you to:
 
@@ -11,23 +12,34 @@ It allows you to:
   available shells)
 
 * Specify how your configurations should be installed (where symlinks should
-  point to, which repositories to clone, etc), making it easy to get set up
-  on a new machine, and also making it easy remove your presence from that
-  machine when you're done
+  point to, which repositories to clone, which Homebrew formula to install,
+  etc.), making it easy to get set up on a new machine, and also making it easy
+  to remove your presence from that machine when you're done
 
 ## Installation
 
-Clone the repository:
+The initial step depends on whether you're installing on a brand new machine
+(i.e. core programs like `git` or `gcc` have not been installed on it yet)
+or are installing Dot on typical machine with stuff already on it.
+
+### Typical Install
 
     git clone git://github.com/sds/dot.git ~/.dotfiles
 
-Run the install script:
+### Blank Slate
+
+    mkdir -p ~/.dotfiles && \
+      curl -L https://github.com/sds/dot/tarball/master | \
+      tar xz --strip 1 -C ~/.dotfiles
+
+Once you have Dot on your system using one of the above methods, run the install
+script:
 
     cd ~/.dotfiles && ./install
 
-You're all set. Don't worry, Dot will backup any dot files it replaces. You
-can uninstall Dot and revert to your previous setup at any time by running
-the `uninstall` script within the Dot directory.
+Reload your terminal and you're all set. Don't worry, Dot will backup any dot
+files it replaces. You can uninstall Dot and revert to your previous setup at
+any time by running the `uninstall` script within the Dot directory.
 
     cd ~/.dotfiles && ./uninstall
 
@@ -162,6 +174,8 @@ The following environment variables are useful when writing plugins:
 ## Motivations
 
 Dot was motivated by the desire to:
+
+* Save setup time on new systems
 
 * Provide a flexible framework for organizing a large number of dotfile
   configurations

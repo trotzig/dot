@@ -3,7 +3,7 @@
 #
 # This script and any setup scripts should be idempotent.
 
-backup () {
+backup() {
   local file=$1
   local file_name=`basename $1`
   local backup_file="$DOTDIR/backups/$file_name.bak"
@@ -20,7 +20,7 @@ backup () {
   cp -r "$file" "$backup_file"
 }
 
-restore () {
+restore() {
   local file=$1
   local file_name=`basename $1`
   local backup_file="$DOTDIR/backups/$file_name.bak"
@@ -35,16 +35,16 @@ restore () {
   fi
 }
 
-installing () {
+installing() {
   [ "$DOTSETUPTYPE" = "install" ]
 }
 
-uninstalling () {
+uninstalling() {
   [ "$DOTSETUPTYPE" = "uninstall" ]
 }
 
 # Declares a git repository for a plugin, handling both install/uninstall
-repo () {
+repo() {
   local repo_url=$1
   local repo_dest=$2 # optional
   local commit=$3    # optional
@@ -71,7 +71,7 @@ repo () {
 }
 
 # Declarative syntax for specifying that a symlink should be created for plugin
-symlink () {
+symlink() {
   local target_file=$1 # Location to place the symlink
   local source_file=$2 # File to point symlink to
 
@@ -98,7 +98,7 @@ symlink () {
 # Declarative syntax for specifying a file to be created for plugin
 # The file contents are passed in via STDIN, so callers can use Heredoc syntax
 # to make convenient file templates.
-file () {
+file() {
   local file=$1
   local file_name=`basename $1`
   local tmp_file="$DOTTMPDIR/$file_name"
@@ -184,4 +184,14 @@ EOF
 # Load additional OS-specific helpers
 if [ `uname` = Darwin ]; then
   source "$DOTDIR/bootstrap/helpers/mac.sh"
+
+  if installing; then
+    ensure_homebrew_installed
+  fi
+fi
+
+# Finally, make sure we're a git repository (in case user installed via tarball)
+if [ ! -d $DOTDIR/.git ]; then
+  git init -q
+  git remote add origin https://github.com/sds/dot
 fi

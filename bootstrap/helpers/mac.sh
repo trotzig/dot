@@ -1,19 +1,13 @@
-# Installs a Mac .pkg file from a URL
-install_package() {
-  url=$1
-  cache_dir=/tmp/dotfiles/packages
-  filename=`basename $url`
-  pkg="${cache_dir}/${filename}"
-
-  mkdir -p $cache_dir
-
-  # Download package if we don't already have it cached
-  if [ ! -s "$pkg" ]; then
-    [ ! -f "$pkg" ] && pkg=`mktemp $pkg`
-    curl --location --output $pkg $url
+ensure_homebrew_installed() {
+  if [ ! $(command -v brew) ]; then
+    ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+    brew install git # Commonly used so just install it now
   fi
 
-  sudo installer -pkg $pkg -target / && rm $pkg
+  if ! brew cask >/dev/null 2>&1; then
+    brew tap phinze/homebrew-cask
+    brew install brew-cask
+  fi
 }
 
 formula_installed() {
