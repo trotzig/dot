@@ -32,10 +32,17 @@ uninstall_formula() {
 # Declarative syntax for specifying a Homebrew formula should be installed
 formula() {
   formula=$1
+  plist=$2 # Optional plist to load/unload with launchctl
 
   if installing; then
     install_formula $formula
+    if [ -n "$plist" ]; then
+      launchctl load $HOME/Library/LaunchAgents/$plist
+    fi
   else
+    if [ -n "$plist" ]; then
+      launchctl unload $HOME/Library/LaunchAgents/$plist
+    fi
     uninstall_formula $formula
   fi
 }
