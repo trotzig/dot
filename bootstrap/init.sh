@@ -11,7 +11,15 @@ export PATH="$HOME/bin:/usr/local/bin:$PATH"
 
 # Returns a string representing the shell running this script
 current_shell () {
-  echo `basename $SHELL`
+  local shell=sh
+
+  if [ -n "$BASH_VERSION" ]; then
+    shell=bash
+  elif [ -n "$ZSH_VERSION" ]; then
+    shell=zsh
+  fi
+
+  echo "$shell"
 }
 
 # Sets an alias safely, printing an error if alias is already in use.
