@@ -1,3 +1,3 @@
 setup() {
-  echo | file $HOME/.hushlogin
+  symlink "$HOME/.hushlogin" "$DOTPLUGIN/hushlogin"
 }
