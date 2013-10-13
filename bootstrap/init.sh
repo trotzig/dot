@@ -83,9 +83,6 @@ init_dot_colours () {
   PUNDERLINE="$prefix[04m$suffix"
   PBLINK="$prefix[05m$suffix"
   PREVERSE="$prefix[07m$suffix"
-  # TODO: Write a script that checks the current cursor column, and only resets
-  # the cursor if the column is not the first column
-  #PSTARTLINE="$prefix[G$suffix" # Move cursor to the start of current line
   PSTARTLINE=""
 
   RESET="[00m"
@@ -106,7 +103,7 @@ init_dot_colours () {
     PBG[$color]="$prefix[48;5;${color}m$suffix"
   done
 
-  colours () {
+  colours() {
     for code in {0..255}; do
       printf "${reset}${FG[$code]}%03s: The quick brown fox jumped over the lazy dog\n" "$code"
     done
