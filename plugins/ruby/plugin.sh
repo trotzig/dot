@@ -1,2 +1,2 @@
 # Load shims
-eval "$(rbenv init -)"
+eval "$(rbenv init - `current_shell`)"
