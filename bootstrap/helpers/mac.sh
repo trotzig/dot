@@ -54,18 +54,21 @@ cask_installed() {
 
 install_cask() {
   cask=$1
-  cask_installed $cask || brew cask install $cask
+  if ! cask_installed $cask; then
+    brew cask install $cask
+  fi
 }
 
 uninstall_cask() {
   cask=$1
-  cask_installed $cask && brew cask uninstall $cask
+  if cask_installed $cask; then
+    brew cask uninstall $cask
+  fi
 }
 
 # Declarative syntax for specifying a Homebrew cask should be installed
 cask() {
   cask=$1
-
   if installing; then
     install_cask $cask
   else
