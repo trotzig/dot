@@ -1,10 +1,16 @@
 # Returns non-zero exit status if no updates took place or error occurred
-update_dot () {
+update_dot() {
   local updated=1
   local stashed=0;
   local old_dir=`pwd`
 
   cd "$DOTDIR"
+
+  # Make sure we're a git repository (in case user installed via tarball)
+  if [ ! -d $DOTDIR/.git ]; then
+    git init -q
+    git remote add origin https://github.com/sds/dot
+  fi
 
   local cur_revision=`git rev-parse HEAD`
 

@@ -189,9 +189,3 @@ if [ `uname` = Darwin ]; then
     ensure_homebrew_installed
   fi
 fi
-
-# Finally, make sure we're a git repository (in case user installed via tarball)
-if [ ! -d $DOTDIR/.git ]; then
-  git init -q
-  git remote add origin https://github.com/sds/dot
-fi
