@@ -160,7 +160,17 @@ setup_dot() {
     return 1
   fi
 
+  # Load basic helpers
   source "$DOTDIR/bootstrap/init.sh"
+
+  # Load additional OS-specific helpers
+  if [ `uname` = Darwin ]; then
+    source "$DOTDIR/bootstrap/helpers/mac.sh"
+
+    if installing; then
+      ensure_homebrew_installed
+    fi
+  fi
 
   if [ -n "$specific_plugin" ]; then
     setup_dot_plugin $specific_plugin
@@ -180,12 +190,3 @@ EOF
     setup_dot_plugin "$plugin"
   done
 }
-
-# Load additional OS-specific helpers
-if [ `uname` = Darwin ]; then
-  source "$DOTDIR/bootstrap/helpers/mac.sh"
-
-  if installing; then
-    ensure_homebrew_installed
-  fi
-fi
