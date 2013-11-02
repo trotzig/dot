@@ -84,7 +84,7 @@
   extendedRegexp = true
   lineNumber     = true
 [help]
-  autocorrect = 10
+  autocorrect = 1
 [merge]
   log = 100
 [pager]
