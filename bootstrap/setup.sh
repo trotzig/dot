@@ -166,10 +166,7 @@ setup_dot() {
   # Load additional OS-specific helpers
   if [ `uname` = Darwin ]; then
     source "$DOTDIR/bootstrap/helpers/mac.sh"
-
-    if installing; then
-      ensure_homebrew_installed
-    fi
+    source "$DOTDIR/bootstrap/setup/mac.sh"
   fi
 
   if [ -n "$specific_plugin" ]; then

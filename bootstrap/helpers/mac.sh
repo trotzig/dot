@@ -1,3 +1,21 @@
+ensure_xcode_clt_installed() {
+  if $(pkgutil --pkg-info=com.apple.pkg.DeveloperToolsCLI >/dev/null); then
+    return # Already have XCode Command Line Tools installed
+  fi
+
+  dmg="$DOTDIR/tmp/clitools.dmg"
+  if [ ! -f "$dmg" ]; then
+    dmg_url=`python $DOTDIR/bootstrap/helpers/xcode-clt-url.py`
+    curl -L "$dmg_url" -o "$dmg"
+  fi
+
+  tmp_mount=`/usr/bin/mktemp -d /tmp/clitools.XXXX`
+  hdiutil attach "$dmg" -mountpoint "$tmp_mount" -nobrowse
+  sudo installer -pkg "$(find $tmp_mount -name '*.mpkg')" -target /
+  hdiutil detach "$tmp_mount"
+  rm -rf "$tmp_mount"
+}
+
 ensure_homebrew_installed() {
   if [ ! $(command -v brew) ]; then
     ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
