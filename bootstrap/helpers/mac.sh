@@ -55,11 +55,14 @@ formula() {
   if installing; then
     install_formula $formula
     if [ -n "$plist" ]; then
+      mkdir -p ~/Library/LaunchAgents
+      ln -sf `brew --prefix`/opt/$formula/$plist $HOME/Library/LaunchAgents
       launchctl load $HOME/Library/LaunchAgents/$plist
     fi
   else
     if [ -n "$plist" ]; then
       launchctl unload $HOME/Library/LaunchAgents/$plist
+      rm $HOME/Library/LaunchAgents/$plist
     fi
     uninstall_formula $formula
   fi
