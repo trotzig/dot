@@ -1,19 +1,8 @@
 ensure_xcode_clt_installed() {
-  if $(pkgutil --pkg-info=com.apple.pkg.DeveloperToolsCLI >/dev/null); then
-    return # Already have XCode Command Line Tools installed
+  # As of OS X 10.9, can install Command Line Tools via this command
+  if [ ! $(xcode-select --print-path) ]; then
+    xcode-select --install
   fi
-
-  dmg="$DOTDIR/tmp/clitools.dmg"
-  if [ ! -f "$dmg" ]; then
-    dmg_url=`python $DOTDIR/bootstrap/helpers/xcode-clt-url.py`
-    curl -L "$dmg_url" -o "$dmg"
-  fi
-
-  tmp_mount=`/usr/bin/mktemp -d /tmp/clitools.XXXX`
-  hdiutil attach "$dmg" -mountpoint "$tmp_mount" -nobrowse
-  sudo installer -pkg "$(find $tmp_mount -name '*.mpkg')" -target /
-  hdiutil detach "$tmp_mount"
-  rm -rf "$tmp_mount"
 }
 
 ensure_homebrew_installed() {
