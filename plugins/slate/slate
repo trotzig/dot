@@ -68,7 +68,7 @@ layout headsUp ${terminal} ${full} ${widescreen}
 layout headsUp ${browser} ${full} ${widescreen}
 layout headsUp ${mail} ${lefthalf} ${widescreen}
 layout headsUp ${chat} ${righthalf} ${laptop}
-layout headsUp ${irc} ${righthalf} ${widescreen}
+layout headsUp ${irc} ${full} ${laptop}
 layout headsUp ${music} ${full} ${widescreen}
 layout headsUp ${todo} ${lefthalf} ${laptop}
 layout headsUp ${calendar} ${full} ${widescreen}
