@@ -7,7 +7,7 @@ ensure_xcode_clt_installed() {
 
 ensure_homebrew_installed() {
   if [ ! $(command -v brew) ]; then
-    ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+    ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
     brew install git # Commonly used so just install it now
   fi
 
