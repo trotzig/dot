@@ -9,6 +9,7 @@ set -e # Halt on first error
 export DOTDIR="$( cd "$( dirname "$0" )" && pwd )"
 
 source "$DOTDIR/bootstrap/init.sh"
+source "$DOTDIR/bootstrap/setup.sh"
 source "$DOTDIR/bootstrap/update.sh"
 
 update_dot

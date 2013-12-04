@@ -127,6 +127,16 @@ file() {
   fi
 }
 
+# Ensures Dot is a git repo.
+ensure_git_repo() {
+  if [ ! -d $DOTDIR/.git ]; then
+    git init -q
+    git remote add origin https://github.com/sds/dot
+    git fetch origin
+    git reset origin/master
+  fi
+}
+
 # Sets up environment for [un]installation of plugin
 setup_dot_plugin() {
   local plugin_name=$1
@@ -186,4 +196,7 @@ EOF
     local plugin="$(basename $(dirname $script))"
     setup_dot_plugin "$plugin"
   done
+
+  # By this point we should have git installed, so ensure we're a git repo
+  ensure_git_repo
 }

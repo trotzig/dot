@@ -7,12 +7,7 @@ update_dot() {
   cd "$DOTDIR"
 
   # Make sure we're a git repository (in case user installed via tarball)
-  if [ ! -d $DOTDIR/.git ]; then
-    git init -q
-    git remote add origin https://github.com/sds/dot
-    git fetch origin
-    git reset origin/master
-  fi
+  ensure_git_repo
 
   local cur_revision=`git rev-parse HEAD`
 
