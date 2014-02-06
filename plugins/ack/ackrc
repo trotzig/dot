@@ -10,3 +10,4 @@
 --ignore-dir=_site
 --type-add=css=.sass,.scss
 --type-add=ruby=.erb,.haml,.rake,.rb,.rhtml,.rjs,.rxml,.rsel,.spec
+--type-set=conf=.conf,.cfg,.ini
