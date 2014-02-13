@@ -18,30 +18,15 @@ It allows you to:
 
 ## Installation
 
-The initial step depends on whether you're installing on a brand new machine
-(i.e. core programs like `git` or `gcc` have not been installed on it yet)
-or are installing Dot on typical machine with stuff already on it.
+Whether you're starting with a brand new machine or want to install Dot on
+a machine you've been using for a while, run the following in your terminal:
 
-### Typical Install
+```bash
+bash -c "$(curl -fsSL https://raw.github.com/sds/dot/master/bootstrap/remote-install)"
+```
 
-    git clone git://github.com/sds/dot.git ~/.dotfiles
-
-### Blank Slate
-
-    mkdir -p ~/.dotfiles && \
-      curl -L https://github.com/sds/dot/tarball/master | \
-      tar xz --strip 1 -C ~/.dotfiles
-
-Once you have Dot on your system using one of the above methods, run the install
-script:
-
-    cd ~/.dotfiles && ./install
-
-Reload your terminal and you're all set. Don't worry, Dot will backup any dot
-files it replaces. You can uninstall Dot and revert to your previous setup at
-any time by running the `uninstall` script within the Dot directory.
-
-    cd ~/.dotfiles && ./uninstall
+Have a look at the [source](https://github.com/sds/dot/blob/master/bootstrap/remote-install)
+if you want to confirm what you're about to run.
 
 ## Organization
 
