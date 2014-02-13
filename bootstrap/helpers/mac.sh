@@ -1,10 +1,3 @@
-ensure_xcode_clt_installed() {
-  # As of OS X 10.9, can install Command Line Tools via this command
-  if [ ! $(xcode-select --print-path) ]; then
-    xcode-select --install
-  fi
-}
-
 ensure_homebrew_installed() {
   if [ ! $(command -v brew) ]; then
     ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
