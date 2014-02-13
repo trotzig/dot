@@ -127,7 +127,7 @@ file() {
   fi
 }
 
-# Ensures Dot is a git repo.
+# Ensures Dot is a git repo. This is useful when it is installed via tarball.
 ensure_git_repo() {
   if [ ! -d $DOTDIR/.git ]; then
     git init -q
