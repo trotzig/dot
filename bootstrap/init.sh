@@ -10,7 +10,7 @@ export DOTPLUGINSDIR="$DOTDIR/plugins"
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
 
 # Returns a string representing the shell running this script
-current_shell () {
+current_shell() {
   local shell=sh
 
   if [ -n "$BASH_VERSION" ]; then
@@ -23,7 +23,7 @@ current_shell () {
 }
 
 # Sets an alias safely, printing an error if alias is already in use.
-alias () {
+alias() {
   local mapping=$1
 
   # Redirect to builtin behaviour if no mapping provided
@@ -44,7 +44,7 @@ alias () {
 
 # Ignore any previous alias mappings in certain cases
 # (so we don't get a warning on startup of an alias already existing)
-forcealias () {
+forcealias() {
   builtin alias "$@"
 }
 
@@ -54,12 +54,12 @@ in_path() {
 }
 
 # Print words from string onto separate lines
-words () {
+words() {
   echo "$@" | tr -s " " "\012"
 }
 
 # Make working with colour escape codes easier
-init_dot_colours () {
+init_dot_colours() {
   local prefix=''
   local suffix=''
   local shell=`current_shell`
