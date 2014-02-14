@@ -131,7 +131,7 @@ file() {
 ensure_git_repo() {
   if [ ! -d $DOTDIR/.git ]; then
     git init -q
-    git remote add origin https://github.com/sds/dot
+    git remote add origin git@github.com:sds/dot
     git fetch origin
     git reset origin/master
   fi
