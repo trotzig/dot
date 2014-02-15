@@ -21,7 +21,7 @@
   smu      = submodule update --init
   st       = status -sb
   staged   = diff --cached
-  track    = !sh -c 'git branch --set-upstream `git rev-parse --abbrev-ref HEAD` $1' -
+  track    = !sh -c 'git branch --set-upstream-to $1' -
   tracking = "!f() { $DOTDIR/plugins/git/scripts/tracking "$@"; }; f"
   unstage  = !sh -c 'git reset HEAD'
   unstash  = stash pop
