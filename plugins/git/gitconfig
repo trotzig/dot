@@ -79,7 +79,7 @@
   autocrlf     = input
   excludesfile = ~/.gitignore
 [github]
-  user = sds
+  user = trotzig
 [grep]
   extendedRegexp = true
   lineNumber     = true
@@ -98,3 +98,6 @@
   enabled = 1
 [include]
   path = ~/.gitconfig.local
+[user]
+  name = Henric Trotzig
+  email = henric.trotzig@causes.com
