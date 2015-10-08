@@ -8,6 +8,7 @@
   ctags    = "!f() { $DOTDIR/plugins/git/scripts/ctags "$@"; }; f"
   co       = checkout
   d        = diff
+  flush    = push origin --receive-pack='git receive-pack --reviewer=joe.lencioni --reviewer=jp.posma --reviewer=chris.bisignani --reviewer=kevin' HEAD:refs/publish/master
   fresh    = "!f() { $DOTDIR/plugins/git/scripts/fresh "$@"; }; f"
   hash     = !sh -c 'git rev-parse ${1-HEAD}' -
   hr       = reset --hard
