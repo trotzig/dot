@@ -1,4 +1,6 @@
 [alias]
+  active   = for-each-ref --sort=-committerdate --format='%(committerdate:short) %(refname)' refs/heads refs/remotes
+
   author   = !sh -c 'git config --get user.name && \
                      git config --get user.email'
   authors  = shortlog -sne --no-merges
@@ -8,7 +10,7 @@
   ctags    = "!f() { $DOTDIR/plugins/git/scripts/ctags "$@"; }; f"
   co       = checkout
   d        = diff
-  flush    = push origin --receive-pack='git receive-pack --reviewer=joe.lencioni --reviewer=jp.posma --reviewer=chris.bisignani --reviewer=kevin' HEAD:refs/publish/master
+  flush    = push origin --receive-pack='git receive-pack --reviewer=adam.gilgoff --reviewer=matthew.rucker --reviewer=matt.herbst --reviewer=lynn --reviewer=kevin.kehl --reviewer=shreeya' HEAD:refs/publish/master
   fresh    = "!f() { $DOTDIR/plugins/git/scripts/fresh "$@"; }; f"
   hash     = !sh -c 'git rev-parse ${1-HEAD}' -
   hr       = reset --hard
@@ -101,4 +103,4 @@
   path = ~/.gitconfig.local
 [user]
   name = Henric Trotzig
-  email = henric.trotzig@causes.com
+	email = henric.trotzig@brigade.com
