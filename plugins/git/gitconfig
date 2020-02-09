@@ -1,6 +1,5 @@
 [alias]
-  active   = for-each-ref --sort=-committerdate --format='%(committerdate:short) %(refname)' refs/heads refs/remotes
-
+  active   = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:reset)%(refname:short)%(color:reset) - %(color:green)%(committerdate:relative)%(color:reset)'
   author   = !sh -c 'git config --get user.name && \
                      git config --get user.email'
   authors  = shortlog -sne --no-merges
@@ -31,7 +30,7 @@
   unwip    = reset HEAD~
   wip      = commit -m WIP --no-verify
 [apply]
-  whitespace = fix
+  # whitespace = fix
 [branch]
   autosetupmerge  = always
   autosetuprebase = always
@@ -103,4 +102,4 @@
   path = ~/.gitconfig.local
 [user]
   name = Henric Trotzig
-	email = henric.trotzig@brigade.com
+  email = henric.trotzig@gmail.com
